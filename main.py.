@@ -1,8 +1,40 @@
-# Automated Guided Transport Cart
+from sensor import Sensor
+from controller import Controller
+from test_cases import *
 
-This project simulates an Automated Guided Transport Cart with:
-- Obstacle Detection
-- Noise Filtering
-- Sensor Fault Detection
-- Safe Stop
-- Reset Function
+sensor = Sensor()
+controller = Controller()
+
+print("===== NORMAL TEST =====")
+
+for value in normal_data:
+    reading = sensor.get_reading(value)
+    result = controller.process(reading, sensor.is_stuck())
+    print(f"Distance: {reading} cm -> {result}")
+
+print("\n===== OBSTACLE TEST =====")
+
+controller.reset()
+
+for value in obstacle_data:
+    reading = sensor.get_reading(value)
+    result = controller.process(reading, sensor.is_stuck())
+    print(f"Distance: {reading} cm -> {result}")
+
+print("\n===== NOISE TEST =====")
+
+controller.reset()
+
+for value in noise_data:
+    reading = sensor.get_reading(value)
+    result = controller.process(reading, sensor.is_stuck())
+    print(f"Distance: {reading} cm -> {result}")
+
+print("\n===== STUCK SENSOR TEST =====")
+
+controller.reset()
+
+for value in stuck_data:
+    reading = sensor.get_reading(value)
+    result = controller.process(reading, sensor.is_stuck())
+    print(f"Distance: {reading} cm -> {result}")
