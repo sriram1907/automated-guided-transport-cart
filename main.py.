@@ -1,0 +1,8 @@
+# Automated Guided Transport Cart
+
+This project simulates an Automated Guided Transport Cart with:
+- Obstacle Detection
+- Noise Filtering
+- Sensor Fault Detection
+- Safe Stop
+- Reset Function
